@@ -7,6 +7,7 @@ defineProps({
     type: String,
     default: 'left',
   },
+  players: Array,
 })
 </script>
 
@@ -15,13 +16,13 @@ defineProps({
     <h1>Team {{ name }}</h1>
 
     <div>
-      <ul :style="`text-align: ${alignment}`">
-        <li>Someguy 1</li>
-        <li>Someguy 2</li>
-        <li>Someguy 3</li>
-        <li>Someguy 4</li>
-        <li>Someguy 5</li>
-        <li>Someguy 6</li>
+      <ul :style="`text-align: ${alignment}`" v-for="player in players">
+        <li>
+          {{ player.name }}/{{ player.champion }} {{ player.kda }}
+          <div>
+            <span v-for="item in player.items" v-text="item + ', '"></span>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
